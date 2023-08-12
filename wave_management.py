@@ -15,6 +15,7 @@ class WaveManagement:
     ENEMY_SPAWN_RADIUS = 300
     spawn_time = 1000
     number_enemy = 1
+
     def __init__(self, screen_dimensions, enemy_list):
         self.screen_width, self.screen_height = screen_dimensions
         self.enemies_list = enemy_list
@@ -49,5 +50,3 @@ class WaveManagement:
                 self.generate_enemy()
             self.last_enemy_generation_time = current_time
         # self.ENEMY_STATS["SlowEnemy"]["speed"] += 0.01
-
-

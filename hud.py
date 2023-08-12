@@ -51,8 +51,7 @@ class HUD:
         time_text = "Time: {:02d}:{:02d}".format(elapsed_time // 60, elapsed_time % 60)
         time_surface = self.font_money.render(time_text, True, (255, 255, 255))
         time_x = (self.screen_width - time_surface.get_width()) / 2
-        screen.blit(time_surface, (
-        time_x, 50))  # Affichez le temps sous l'affichage de l'argent avec un écart de 50 pixels depuis le haut
+        screen.blit(time_surface, (time_x, 50))  # Affichez le temps sous l'argent d'un écart de 50 pixel en haut
 
     def draw_stats(self, screen):
         # Générer la liste des stats avec le formatage correct des noms
