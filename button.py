@@ -56,14 +56,25 @@ class Button:
         return self.x < pos[0] < self.x + self.width and self.y < pos[1] < self.y + self.height
 
     def click_action(self):
-        if self.attribute and self.player:
-            # Obtenir le coût d'amélioration actuel
-            current_price = self.player.get_upgrade_cost(self.attribute)
+        try:
+            if self.attribute and self.player:
+                # Obtenir le coût d'amélioration actuel
+                current_price = self.player.get_upgrade_cost(self.attribute)
 
-            # Vérifier si le joueur peut se permettre l'amélioration
-            if self.player.money >= current_price:  # Utilisez l'attribut d'argent du joueur pour la comparaison
-                # Appliquer l'amélioration
-                self.player.upgrade_attribute(self.attribute)
+                # Vérifier si le joueur peut se permettre l'amélioration
+                if self.player.money >= current_price:  # Utilisez l'attribut d'argent du joueur pour la comparaison
+                    # Appliquer l'amélioration
+                    self.player.upgrade_attribute(self.attribute)
 
-                # Mettre à jour le prix stocké pour l'affichage
-                self.stored_price = self.player.get_upgrade_cost(self.attribute) or 0
+                    # Mettre à jour le prix stocké pour l'affichage
+                    self.stored_price = self.player.get_upgrade_cost(self.attribute) or 0
+                else:
+                    raise ValueError("Fonds insuffisants pour l'amélioration")
+
+            else:
+                raise AttributeError("Attribut non défini ou joueur non défini")
+
+        except ValueError as ve:
+            print(f"Erreur : {ve}")
+        except AttributeError as ae:
+            print(f"Erreur : {ae}")
