@@ -8,10 +8,11 @@ class HUD:
         self.player = player
         self.screen_width = screen_width
         self.screen_height = screen_height
-
         self.font = pygame.font.Font(None, 26)
         self.font_money = pygame.font.Font(None, 36)
         self.start_time = time.time()
+        self.blink_interval = 500  # Intervalle entre les clignotements en millisecondes
+        self.last_blink_time = pygame.time.get_ticks()
 
         self.BUTTON_PROPERTIES = {
             'x': 10,
@@ -39,9 +40,17 @@ class HUD:
             button.draw(screen)
 
     def draw_money(self, screen):
-        # Dessiner l'argent du joueur en haut au milieu
+        current_time = pygame.time.get_ticks()
+
+
+        # Déterminez la couleur du texte en fonction de l'état de clignotement
+        if self.player.blinking:
+            money_color = (255, 0, 0)  # Rouge
+        else:
+            money_color = (255, 255, 255)  # Blanc
+
         money_text = "Money: ${}".format(int(self.player.money))
-        money_surface = self.font_money.render(money_text, True, (255, 255, 255))
+        money_surface = self.font_money.render(money_text, True, money_color)
         money_x = (self.screen_width - money_surface.get_width()) / 2
         screen.blit(money_surface, (money_x, 10))  # 10 pixels d'écart du haut
 

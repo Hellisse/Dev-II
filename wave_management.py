@@ -9,8 +9,8 @@ enemies = importlib.import_module('enemy')
 class WaveManagement:
     ENEMY_STATS = {
         "SlowEnemy": {"hp": 100, "speed": 0.25, "class": enemies.SlowEnemy},
-        "FastEnemy": {"hp": 50, "speed": 1, "class": enemies.FastEnemy},
-        "RegularEnemy": {"hp": 25, "speed": 0.5, "class": enemies.RegularEnemy}
+        "FastEnemy": {"hp": 30, "speed": 1, "class": enemies.FastEnemy},
+        "RegularEnemy": {"hp": 50, "speed": 0.5, "class": enemies.RegularEnemy}
     }
     ENEMY_SPAWN_RADIUS = 300
     spawn_time = 1000

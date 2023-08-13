@@ -37,7 +37,7 @@ class Game:
     # generation d'un nouvelle enmeie de façon aléatoire
 
     def update(self):
-        self.player.money += 10
+        self.player.money += 5
         self.wave_management.update()  # Wave management first
         self.battle_system.update()    # Then, battle system
 
